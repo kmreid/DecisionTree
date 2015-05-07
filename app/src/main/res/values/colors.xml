@@ -1,0 +1,26 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="black">#000</color>
+
+    <color name="grey01">#565677</color>
+    <color name="grey05">#ACA899</color>
+    <color name="white1">#FFFFFF</color>
+    <color name="white2">#DDDDDD</color>
+
+    <color name="red">#f00</color>
+    <color name="red2">#f56</color>
+    <color name="amber">#f90</color>
+    <color name="orange4">#F7BE45</color>
+    <color name="orange5">#F7D896</color>
+    <color name="yellow1">#F9E60E</color>
+    <color name="yellow2">#F9F89D</color>
+    <color name="green">#0f0</color>
+    <color name="green2">#0d0</color>
+    <color name="green3">#8d4</color>
+    <color name="blue">#00f</color>
+    <color name="blue2">#47f</color>
+    <color name="blue3">#19FCDA</color>
+    <color name="blue25">#D9F7F2</color>
+</resources>
