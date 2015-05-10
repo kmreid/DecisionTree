@@ -1,14 +1,8 @@
 package net.kreid.decisiontree;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,9 +214,10 @@ public class Game
         return currentNode.getYes().isLeaf();
     }
 
-    public void resetCurrentNode()
+    public void restart()
     {
-        // Set current node to root
+        currentNode = rootNode;
+        _stepsHistory = new ArrayList<Direction>();
     }
 
     public void insertNewLeafNode(String newQuestion, String newAnswer)

@@ -1,7 +1,8 @@
 package net.kreid.decisiontree;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,12 +44,24 @@ public class GuessWrongActivity extends ActionBarActivity {
                     // Insert new answer
                     MainActivity.game.insertNewLeafNode(newQ, newA);
                     MainActivity.game.SaveState(getApplicationContext());
-                    // Restart game
 
+                    Intent intent = new Intent(getApplicationContext(), PlayAgainActivity.class);
+                    startActivityForResult(intent, 0);
                 }
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(resultCode)
+        {
+            case MainActivity.RESULT_CLOSE_ALL:
+                setResult(MainActivity.RESULT_CLOSE_ALL);
+                finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

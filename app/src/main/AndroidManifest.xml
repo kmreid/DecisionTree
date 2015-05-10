@@ -65,6 +65,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.kreid.decisiontree.GuessActivity" />
         </activity>
+        <activity
+            android:name=".PlayAgainActivity"
+            android:label="@string/title_activity_play_again" >
+        </activity>
     </application>
 
 </manifest>

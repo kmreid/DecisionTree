@@ -1,8 +1,8 @@
 package net.kreid.decisiontree;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,30 +19,42 @@ public class GuessActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            GuessedDirection = Game.Direction.valueOf(extras.getString("direction"));
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null) {
+//            GuessedDirection = Game.Direction.valueOf(extras.getString("direction"));
+//
+//
+//            if(GuessedDirection == Game.Direction.YES)
+//            {
+//
+//            }
+//            else
+//            {
+//
+//            }
+//
+//        }
 
-            Node next = MainActivity.game.getCurrentNode();
-            if(GuessedDirection == Game.Direction.YES)
-            {
+        Node next = MainActivity.game.getCurrentNode();
+        String guess = next.getText();
+        final TextView guessText = (TextView) findViewById(R.id.guessText);
+        guessText.setText(guess);
+    }
 
-            }
-            else
-            {
-
-            }
-
-            String guess = next.getText();
-            final TextView guessText = (TextView) findViewById(R.id.guessText);
-            guessText.setText(guess);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(resultCode)
+        {
+            case MainActivity.RESULT_CLOSE_ALL:
+                setResult(MainActivity.RESULT_CLOSE_ALL);
+                finish();
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
 
         final Button correctBtn = (Button) findViewById(R.id.correctBtn);
         correctBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +62,7 @@ public class GuessActivity extends ActionBarActivity {
                 // Guessed right
                 // Show computer win view
                 Intent intent = new Intent(getApplicationContext(), GuessRightActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -60,7 +72,7 @@ public class GuessActivity extends ActionBarActivity {
                 // Guessed wrong
                 // Show computer fail view
                 Intent intent = new Intent(getApplicationContext(), GuessWrongActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
     }

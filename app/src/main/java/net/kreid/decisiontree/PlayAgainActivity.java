@@ -9,20 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class GuessRightActivity extends ActionBarActivity {
+public class PlayAgainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guess_right);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_guess_right, menu);
-        return true;
+        setContentView(R.layout.activity_play_again);
     }
 
     @Override
@@ -30,32 +22,33 @@ public class GuessRightActivity extends ActionBarActivity {
         super.onResume();
 
 
-        final Button okButton = (Button) findViewById(R.id.okButton);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        final Button yesButton = (Button) findViewById(R.id.yesButton);
+        yesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PlayAgainActivity.class);
-                startActivityForResult(intent, 0);
+
+                MainActivity.game.restart();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch(resultCode)
-        {
-            case MainActivity.RESULT_CLOSE_ALL:
+        final Button noButton = (Button) findViewById(R.id.noButton);
+        noButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.game.SaveState(getApplicationContext());
                 setResult(MainActivity.RESULT_CLOSE_ALL);
                 finish();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+            }
+        });
     }
 
     @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_play_again, menu);
+        return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

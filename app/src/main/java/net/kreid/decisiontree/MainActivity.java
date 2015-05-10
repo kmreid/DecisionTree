@@ -1,26 +1,18 @@
 package net.kreid.decisiontree;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class MainActivity extends ActionBarActivity{
 
+    protected static final int RESULT_CLOSE_ALL = 0;
     public static Game game;
 
     @Override
@@ -60,6 +52,17 @@ public class MainActivity extends ActionBarActivity{
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(resultCode)
+        {
+            case RESULT_CLOSE_ALL:
+                setResult(RESULT_CLOSE_ALL);
+                finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
 
@@ -83,7 +86,7 @@ public class MainActivity extends ActionBarActivity{
                     // Show computer guessing view
                     Intent intent = new Intent(getApplicationContext(), GuessActivity.class);
                     intent.putExtra("direction", Game.Direction.YES.toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, 0);
                     overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
                 }
                 else
@@ -103,7 +106,7 @@ public class MainActivity extends ActionBarActivity{
                 {
                     Intent intent = new Intent(getApplicationContext(), GuessActivity.class);
                     intent.putExtra("direction", Game.Direction.NO.toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, 0);
                     overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
                 }
                 else
@@ -114,12 +117,24 @@ public class MainActivity extends ActionBarActivity{
             }
         });
 
-        final Button exitButton = (Button) findViewById(R.id.button_exit);
-        exitButton.setOnClickListener(new View.OnClickListener() {
+        final Button restartButton = (Button) findViewById(R.id.button_exit);
+        restartButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                game.SaveState(getApplicationContext());
-                finish(); // TODO - call finish on all activities
-                //System.exit(0);
+
+                // Restart the game
+                game.restart();
+
+                // Restart the activity:
+
+                // Honeycomb and above
+                recreate();
+
+                // Below Honeycomb
+                //Intent intent = getIntent();
+                //finish();
+                //startActivity(intent);
+
+                // Not sure how to target multiple OSs
             }
         });
     }
