@@ -29,30 +29,31 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yep"
+        android:text="That&apos;s correct"
         android:id="@+id/correctBtn"
         android:singleLine="true"
         android:padding="24dp"
         android:background="@drawable/btn_green"
-        android:layout_above="@+id/wrongBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:clickable="false"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:clickable="false" />
+        android:layout_toStartOf="@+id/wrongBtn"
+        android:layout_alignRight="@+id/guessText"
+        android:layout_alignEnd="@+id/guessText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nope"
+        android:text="That&apos;s wrong"
         android:id="@+id/wrongBtn"
         android:singleLine="true"
         android:padding="24dp"
         android:background="@drawable/btn_red"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/correctBtn"
-        android:layout_alignEnd="@+id/correctBtn" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/guessText"
+        android:layout_toRightOf="@+id/guessText" />
 
 </RelativeLayout>

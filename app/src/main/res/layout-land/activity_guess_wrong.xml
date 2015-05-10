@@ -6,7 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="net.kreid.decisiontree.GuessWrongActivity">
 
-    <TextView android:text="I give up! What&apos;s the answer?" android:layout_width="wrap_content"
+    <TextView android:text="Ok, I give up! Tell me who you&apos;re thinking of:" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleText"
         android:textSize="25dp" />
@@ -55,7 +55,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Question to get this answer:"
+        android:text="Please enter a question to lead to this answer:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
