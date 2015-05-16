@@ -23,10 +23,14 @@ public class GuessWrongActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
+        MainActivity.sounds.PlaySound(Sounds.SoundType.WRONG);
 
         final Button submitNewAnswerBtn = (Button) findViewById(R.id.submitNewAnswerBtn);
         submitNewAnswerBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 EditText ansText = (EditText)findViewById(R.id.newAnswerText);
                 String newA = ansText.getText().toString();
 

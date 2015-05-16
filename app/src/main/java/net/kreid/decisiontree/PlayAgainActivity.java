@@ -26,6 +26,8 @@ public class PlayAgainActivity extends ActionBarActivity {
         yesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 MainActivity.game.restart();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -36,6 +38,9 @@ public class PlayAgainActivity extends ActionBarActivity {
         final Button noButton = (Button) findViewById(R.id.noButton);
         noButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 MainActivity.game.SaveState(getApplicationContext());
                 setResult(MainActivity.RESULT_CLOSE_ALL);
                 finish();

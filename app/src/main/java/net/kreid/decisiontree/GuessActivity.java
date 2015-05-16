@@ -59,6 +59,9 @@ public class GuessActivity extends ActionBarActivity {
         final Button correctBtn = (Button) findViewById(R.id.correctBtn);
         correctBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 // Guessed right
                 // Show computer win view
                 Intent intent = new Intent(getApplicationContext(), GuessRightActivity.class);
@@ -69,6 +72,9 @@ public class GuessActivity extends ActionBarActivity {
         final Button wrongBtn = (Button) findViewById(R.id.wrongBtn);
         wrongBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 // Guessed wrong
                 // Show computer fail view
                 Intent intent = new Intent(getApplicationContext(), GuessWrongActivity.class);

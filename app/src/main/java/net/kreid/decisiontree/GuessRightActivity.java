@@ -29,10 +29,14 @@ public class GuessRightActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
+        MainActivity.sounds.PlaySound(Sounds.SoundType.CORRECT);
 
         final Button okButton = (Button) findViewById(R.id.okButton);
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 Intent intent = new Intent(getApplicationContext(), PlayAgainActivity.class);
                 startActivityForResult(intent, 0);
             }

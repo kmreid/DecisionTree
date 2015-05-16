@@ -14,6 +14,7 @@ public class MainActivity extends ActionBarActivity{
 
     protected static final int RESULT_CLOSE_ALL = 0;
     public static Game game;
+    public static Sounds sounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends ActionBarActivity{
         if(savedInstanceState == null){
             game = new Game();
             game.LoadState(getApplicationContext());
+            sounds = new Sounds(getApplicationContext());
         }
 
         setContentView(R.layout.activity_main);
@@ -80,6 +82,8 @@ public class MainActivity extends ActionBarActivity{
         yesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 game.goYes();
                 if(game.atLeaf())
                 {
@@ -101,6 +105,8 @@ public class MainActivity extends ActionBarActivity{
         noButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
+
                 game.goNo();
                 if(game.atLeaf())
                 {
@@ -120,6 +126,8 @@ public class MainActivity extends ActionBarActivity{
         final Button restartButton = (Button) findViewById(R.id.button_exit);
         restartButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                MainActivity.sounds.PlaySound(Sounds.SoundType.BUTTON_CLICK);
 
                 // Restart the game
                 game.restart();
